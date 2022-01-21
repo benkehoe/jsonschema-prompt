@@ -3,7 +3,7 @@
 ```python
 import json
 
-from jsonschema_prompt.prompt import *
+from jsonschema_prompt import prompt
 
 schema1 = {
     "type": "object",
@@ -24,7 +24,7 @@ schema1 = {
     "required": [ "foo" ],
     "additionalProperties": True,
 }
-value = prompt_from_schema("test obj: ", schema1)
+value = prompt("test obj: ", schema1)
 print(json.dumps(value, indent=2))
 
 schema2 = {
@@ -34,6 +34,14 @@ schema2 = {
     },
     "minItems": 3
 }
-value = prompt_from_schema("test array: ", schema2)
+value = prompt("test array: ", schema2)
 print(json.dumps(value, indent=2))
+```
+
+```bash
+python -m jsonschema_prompt --schema '{"type": "array", "items": {"type": "schema"}}'
+
+echo '{"type": "array", "minItems": 3}' > schema.json
+python -m jsonschema_prompt --schema-file schema.json
+# loads yaml files if pyyaml is installed
 ```

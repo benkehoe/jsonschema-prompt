@@ -1,6 +1,6 @@
 import json
 
-from jsonschema_prompt.prompt import *
+from jsonschema_prompt import prompt
 
 if False:
     value = prompt_string("test: ", {
@@ -47,5 +47,5 @@ if True:
         },
         "minItems": 3
     }
-    value = prompt_from_schema("test array: ", schema)
+    value = prompt("test array: ", schema)
     print(json.dumps(value, indent=2))
